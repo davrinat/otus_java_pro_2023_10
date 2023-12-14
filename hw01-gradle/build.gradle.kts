@@ -1,19 +1,24 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
 plugins {
-    id("java")
-}
-
-group = "ru.otus"
-version = "1.0-SNAPSHOT"
-
-repositories {
-    mavenCentral()
+    id ("com.github.johnrengelman.shadow")
 }
 
 dependencies {
-    testImplementation(platform("org.junit:junit-bom:5.9.1"))
-    testImplementation("org.junit.jupiter:junit-jupiter")
+    implementation ("com.google.guava:guava")
 }
 
-tasks.test {
-    useJUnitPlatform()
+tasks {
+    named<ShadowJar>("shadowJar") {
+        archiveBaseName.set("gradleHelloWorld")
+        archiveVersion.set("0.1")
+        archiveClassifier.set("")
+        manifest {
+            attributes(mapOf("Main-Class" to "ru.otus.HelloOtus"))
+        }
+    }
+
+    build {
+        dependsOn(shadowJar)
+    }
 }
