@@ -2,7 +2,7 @@ package ru.otus.service;
 
 import ru.otus.annotations.Log;
 
-public class TestLoggingImpl implements TestLogging{
+public class FirstTestLoggingImpl implements TestLogging{
 
     @Log
     @Override
