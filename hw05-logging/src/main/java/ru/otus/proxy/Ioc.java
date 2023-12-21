@@ -2,13 +2,15 @@ package ru.otus.proxy;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.otus.utils.CustomChecker;
+import ru.otus.annotations.Log;
 import ru.otus.utils.CustomClassLoader;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Ioc {
     private static final Logger logger = LoggerFactory.getLogger(Ioc.class);
@@ -32,23 +34,31 @@ public class Ioc {
 
     static class MyInvocationHandler implements InvocationHandler{
         private final Object obj;
-        Method[] methods;
+        List<Method> listMethodsForLog;
 
         public MyInvocationHandler(Object obj) {
             this.obj = obj;
-            methods = obj.getClass().getDeclaredMethods();
+            listMethodsForLog = new ArrayList<>();
+            isNeedLog();
         }
 
         @Override
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-            if (isNeedLog(method)) {
-                logger.info("execute method: " + method.getName() + ", param " + Arrays.toString(args));
-            }
+            listMethodsForLog.stream()
+                    .filter(logMethod -> Arrays.equals(logMethod.getParameterTypes(), method.getParameterTypes())
+                    && Arrays.equals(logMethod.getName().getBytes(), method.getName().getBytes()))
+                    .map(logMethod -> "execute method: " + method.getName() + ", param " + Arrays.toString(args))
+                    .forEach(logger::info);
             return method.invoke(obj, args);
         }
 
-        private boolean isNeedLog(Method method) {
-            return new CustomChecker().check(method, methods);
+        private void isNeedLog() {
+            Method[] methods = obj.getClass().getDeclaredMethods();
+            for (Method method : methods) {
+                if (method.isAnnotationPresent(Log.class)) {
+                    listMethodsForLog.add(method);
+                }
+            }
         }
     }
 }
