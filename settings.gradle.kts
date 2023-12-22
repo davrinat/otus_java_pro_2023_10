@@ -23,7 +23,7 @@ pluginManagement {
 }
 include("hw01-gradle")
 include("hw02-generics")
-include("hw05-logging")
 include("hw03-annotation")
 include("hw04-gc")
+include("hw05-logging")
 include("hw06-atm")
