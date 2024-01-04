@@ -10,7 +10,8 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Ioc {
     private static final Logger logger = LoggerFactory.getLogger(Ioc.class);
@@ -34,11 +35,11 @@ public class Ioc {
 
     static class MyInvocationHandler implements InvocationHandler{
         private final Object obj;
-        List<Method> listMethodsForLog;
+        Set<Method> listMethodsForLog;
 
         public MyInvocationHandler(Object obj) {
             this.obj = obj;
-            listMethodsForLog = new ArrayList<>();
+            listMethodsForLog = new HashSet<>();
             isNeedLog();
         }
 
