@@ -7,8 +7,8 @@ import ru.otus.listener.ListenerPrinterConsole;
 import ru.otus.model.Message;
 import ru.otus.model.ObjectForMessage;
 import ru.otus.processor.*;
+import ru.otus.util.CustomDateTimeService;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 public class HomeWork {
@@ -39,7 +39,7 @@ public class HomeWork {
                 new ProcessorConcatFields(),
                 new LoggerProcessor(new ProcessorUpperField10()),
                 new LoggerProcessor(new ProcessorChangeFields()),
-                new LoggerProcessor(new ProcessorCheckSeconds(LocalDateTime.now().getSecond()))
+                new LoggerProcessor(new ProcessorCheckSeconds(new CustomDateTimeService()))
         );
 
         var complexProcessor = new ComplexProcessor(processors, ex -> {});

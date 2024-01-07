@@ -105,7 +105,11 @@ public class Message {
     }
 
     public ObjectForMessage getField13() {
-        return new ObjectForMessage() {{
+        return cloneObj();
+    }
+
+    private ObjectForMessage cloneObj() {
+        return new ObjectForMessage(){{
             setData(field13.getData());
         }};
     }

@@ -1,5 +1,6 @@
 package ru.otus.listener.homework;
 
+import ru.otus.exception.DataException;
 import ru.otus.listener.Listener;
 import ru.otus.model.Message;
 
@@ -10,13 +11,10 @@ import java.util.Optional;
 public class HistoryListener implements Listener, HistoryReader {
 
     private final Map<Long, Message> cache = new HashMap<>();
+
     @Override
     public void onUpdated(Message msg) {
-        try {
-            cache.put(msg.getId(), msg);
-        } catch (Exception e) {
-            throw new UnsupportedOperationException(e.getMessage(), e.getCause());
-        }
+        cache.put(msg.getId(), msg);
     }
 
     @Override
@@ -24,7 +22,7 @@ public class HistoryListener implements Listener, HistoryReader {
         try {
             return Optional.ofNullable(cache.get(id));
         } catch (Exception e) {
-            throw new UnsupportedOperationException(e.getMessage(), e.getCause());
+            throw new DataException(e.getMessage(), e.getCause());
         }
     }
 }
