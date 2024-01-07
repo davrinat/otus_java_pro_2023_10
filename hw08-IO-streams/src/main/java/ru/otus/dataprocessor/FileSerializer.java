@@ -1,7 +1,5 @@
 package ru.otus.dataprocessor;
 
-import com.google.gson.Gson;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Map;
@@ -17,7 +15,7 @@ public class FileSerializer implements Serializer {
     public void serialize(Map<String, Double> data) {
         // формирует результирующий json и сохраняет его в файл
         try (var writer = new FileWriter(fileName)) {
-            new Gson().toJson(data, writer);
+            CustomGson.getInstance().toJson(data, writer);
         } catch (IOException e) {
             throw new FileProcessException(e.getMessage());
         }

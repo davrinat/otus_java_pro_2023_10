@@ -1,6 +1,5 @@
 package ru.otus.dataprocessor;
 
-import com.google.gson.Gson;
 import ru.otus.model.Measurement;
 
 import java.io.BufferedReader;
@@ -22,7 +21,7 @@ public class ResourcesFileLoader implements Loader {
         try (var reader = new BufferedReader(
                 new InputStreamReader(
                         Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream(fileName))))) {
-            return List.of(new Gson().fromJson(reader, Measurement[].class));
+            return List.of(CustomGson.getInstance().fromJson(reader, Measurement[].class));
         } catch (IOException e) {
             throw new FileProcessException(e.getMessage());
         }
