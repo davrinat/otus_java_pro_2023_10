@@ -14,14 +14,14 @@ public class HistoryListener implements Listener, HistoryReader {
 
     @Override
     public void onUpdated(Message msg) {
-        cache.put(msg.getId(), msg);
+        cache.put(msg.getId(), msg.clone());
     }
 
     @Override
     public Optional<Message> findMessageById(long id) {
         try {
-            return Optional.ofNullable(cache.get(id));
-        } catch (Exception e) {
+            return Optional.of(cache.get(id));
+        } catch (NullPointerException e) {
             throw new DataException(e.getMessage(), e.getCause());
         }
     }

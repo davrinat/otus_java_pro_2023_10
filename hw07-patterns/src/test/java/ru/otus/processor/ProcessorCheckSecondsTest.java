@@ -12,14 +12,13 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class ProcessorCheckSecondsTest {
-    Message message;
-    CustomDateTimeService service;
-    ProcessorCheckSeconds processor;
+   private Message message;
+    private CustomDateTimeService event;
+    private ProcessorCheckSeconds processor;
 
     @BeforeEach
     void init() {
-        service = mock(CustomDateTimeService.class);
-        processor = new ProcessorCheckSeconds(service);
+        event = mock(CustomDateTimeService.class);
         message = new Message.Builder(1L)
                 .field1("field1")
                 .field2("field2")
@@ -30,14 +29,18 @@ public class ProcessorCheckSecondsTest {
 
     @Test
     void checkEvenSecond() {
-        when(service.isEven()).thenReturn(true);
+        when(event.isEven()).thenReturn(true);
+
+        processor = new ProcessorCheckSeconds(event.isEven());
 
         assertThrows(EvenSecondException.class, () -> processor.process(message));
     }
 
     @Test
     void checkNotEvenSecond() {
-        when(service.isEven()).thenReturn(false);
+        when(event.isNotEven()).thenReturn(false);
+
+        processor = new ProcessorCheckSeconds(event.isNotEven());
 
         AssertionsForClassTypes.assertThat(processor.process(message)).isEqualTo(message);
     }

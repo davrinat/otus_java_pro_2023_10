@@ -9,6 +9,7 @@ import ru.otus.model.ObjectForMessage;
 import ru.otus.processor.*;
 import ru.otus.util.CustomDateTimeService;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class HomeWork {
@@ -39,7 +40,7 @@ public class HomeWork {
                 new ProcessorConcatFields(),
                 new LoggerProcessor(new ProcessorUpperField10()),
                 new LoggerProcessor(new ProcessorChangeFields()),
-                new LoggerProcessor(new ProcessorCheckSeconds(new CustomDateTimeService()))
+                new LoggerProcessor(new ProcessorCheckSeconds(new CustomDateTimeService(LocalDateTime::now).isEven()))
         );
 
         var complexProcessor = new ComplexProcessor(processors, ex -> {});

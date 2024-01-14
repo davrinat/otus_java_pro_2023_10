@@ -2,14 +2,24 @@ package ru.otus.util;
 
 import java.time.LocalDateTime;
 
-public class CustomDateTimeService {
-    LocalDateTime dateTime;
+public class CustomDateTimeService implements ICustomDateTimeService {
+    private final IDateTimeProvider dateTimeProvider;
 
-    public CustomDateTimeService() {
-        this.dateTime = LocalDateTime.now();
+    public CustomDateTimeService(IDateTimeProvider dateTime) {
+        this.dateTimeProvider = dateTime;
     }
 
+    public LocalDateTime getDateTimeProvider() {
+        return dateTimeProvider.getDate();
+    }
+
+    @Override
     public boolean isEven() {
-        return dateTime.getSecond() % 2 == 0;
+        return getDateTimeProvider().getSecond() % 2 == 0;
+    }
+
+    @Override
+    public boolean isNotEven() {
+        return getDateTimeProvider().getSecond() % 2 != 0;
     }
 }
