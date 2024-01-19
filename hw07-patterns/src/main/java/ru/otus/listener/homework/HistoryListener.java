@@ -1,6 +1,5 @@
 package ru.otus.listener.homework;
 
-import ru.otus.exception.DataException;
 import ru.otus.listener.Listener;
 import ru.otus.model.Message;
 
@@ -19,10 +18,6 @@ public class HistoryListener implements Listener, HistoryReader {
 
     @Override
     public Optional<Message> findMessageById(long id) {
-        try {
-            return Optional.of(cache.get(id));
-        } catch (NullPointerException e) {
-            throw new DataException(e.getMessage(), e.getCause());
-        }
+        return Optional.ofNullable(cache.get(id));
     }
 }
