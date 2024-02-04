@@ -37,3 +37,5 @@ include("hw09-jdbc:homework")
 findProject(":hw09-jdbc:homework")?.name = "homework"
 include("hw09-jdbc:demo")
 findProject(":hw09-jdbc:demo")?.name = "demo"
+include("nw10-cache")
+include("hw11-jpql")
