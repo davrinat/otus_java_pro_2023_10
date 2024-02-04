@@ -17,6 +17,9 @@
             <option value="$PROJECT_DIR$/hw06-atm" />
             <option value="$PROJECT_DIR$/hw07-patterns" />
             <option value="$PROJECT_DIR$/hw08-IO-streams" />
+            <option value="$PROJECT_DIR$/hw09-jdbc" />
+            <option value="$PROJECT_DIR$/hw09-jdbc/demo" />
+            <option value="$PROJECT_DIR$/hw09-jdbc/homework" />
           </set>
         </option>
       </GradleProjectSettings>

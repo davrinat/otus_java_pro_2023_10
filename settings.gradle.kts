@@ -30,3 +30,8 @@ include("hw06-atm")
 include("hw02-generics")
 include("hw07-patterns")
 include("hw08-IO-streams")
+include("hw09-jdbc")
+include("hw09-jdbc:demo")
+findProject(":hw09-jdbc:demo")?.name = "demo"
+include("hw09-jdbc:homework")
+findProject(":hw09-jdbc:homework")?.name = "homework"
