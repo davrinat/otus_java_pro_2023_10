@@ -20,8 +20,7 @@
             <option value="$PROJECT_DIR$/hw09-jdbc" />
             <option value="$PROJECT_DIR$/hw09-jdbc/demo" />
             <option value="$PROJECT_DIR$/hw09-jdbc/homework" />
-            <option value="$PROJECT_DIR$/hw11-jpql" />
-            <option value="$PROJECT_DIR$/nw10-cache" />
+            <option value="$PROJECT_DIR$/hw10-jpql" />
           </set>
         </option>
       </GradleProjectSettings>
