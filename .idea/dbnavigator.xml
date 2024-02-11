@@ -6,7 +6,7 @@
   </component>
   <component name="DBNavigator.Project.DataEditorManager">
     <record-view-column-sorting-type value="BY_INDEX" />
-    <value-preview-text-wrapping value="true" />
+    <value-preview-text-wrapping value="false" />
     <value-preview-pinned value="false" />
   </component>
   <component name="DBNavigator.Project.DatabaseBrowserManager">
@@ -28,6 +28,9 @@
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="b7930c2b-a93b-4e3d-8a94-b24c8a660a47" />
+  </component>
+  <component name="DBNavigator.Project.FileConnectionMappingManager">
+    <mapping file-url="file://$PROJECT_DIR$/hw10-jpql/src/main/resources/migration/V1__initial_schema.sql" connection-id="b7930c2b-a93b-4e3d-8a94-b24c8a660a47" session-id="MAIN" current-schema="demoDB" />
   </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />
